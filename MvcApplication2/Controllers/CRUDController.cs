@@ -116,7 +116,18 @@ namespace MvcApplication2.Controllers
         // GET: CRUD/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var deleting = db.Clients.Find(id);
+
+            foreach (Order item in deleting.Orders.ToList())
+            {
+                db.OrderLines.RemoveRange(item.OrderLines);
+            }
+
+            db.Orders.RemoveRange(deleting.Orders);
+            db.Clients.Remove(deleting);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Clients");
         }
 
         // POST: CRUD/Delete/5
