@@ -11,6 +11,7 @@ namespace MvcApplication2.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Product
     {
@@ -19,10 +20,15 @@ namespace MvcApplication2.Models
             this.OrderLines = new HashSet<OrderLine>();
         }
     
+        [Required]
         public int ProductId { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Resources.Product), ErrorMessageResourceName = "ProductNameRequired")]
         public string ProductName { get; set; }
+        [Required]
         public Nullable<decimal> Price { get; set; }
+        [Required]
         public Nullable<bool> Active { get; set; }
+        [Required]
         public Nullable<decimal> Stock { get; set; }
     
         public virtual ICollection<OrderLine> OrderLines { get; set; }
