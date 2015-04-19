@@ -231,6 +231,9 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>Fabrics.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_LookupClients_Result.cs">
+      <DependentUpon>Fabrics.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -329,6 +332,7 @@
     <Content Include="Views\CRUD\Index.cshtml" />
     <Content Include="Views\CRUD\Details.cshtml" />
     <Content Include="Views\CRUD\Create.cshtml" />
+    <Content Include="Views\Clients\Usp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,8 @@ namespace MvcApplication2.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class FabricsEntities : DbContext
     {
@@ -30,5 +32,15 @@ namespace MvcApplication2.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderLine> OrderLines { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+    
+        public virtual ObjectResult<Client> usp_LookupClients()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Client>("usp_LookupClients");
+        }
+    
+        public virtual ObjectResult<Client> usp_LookupClients(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Client>("usp_LookupClients", mergeOption);
+        }
     }
 }

@@ -113,6 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_LookupClients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FabricsModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Occupation" EntityType="Self.Occupation" Schema="dbo" store:Type="Tables" />
@@ -278,7 +279,27 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
+          <FunctionImport Name="usp_LookupClients" EntitySet="Clients" ReturnType="Collection(FabricsModel.Client)" />
         </EntityContainer>
+        <ComplexType Name="usp_LookupClients_Result">
+          <Property Type="Int32" Name="ClientId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CreditRating" Nullable="true" />
+          <Property Type="String" Name="XCode" Nullable="true" MaxLength="7" />
+          <Property Type="Int32" Name="OccupationId" Nullable="true" />
+          <Property Type="String" Name="TelephoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Street1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Street2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="Longitude" Nullable="true" />
+          <Property Type="Double" Name="Latitude" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -349,6 +370,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_LookupClients" FunctionName="FabricsModel.Store.usp_LookupClients">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

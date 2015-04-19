@@ -15,9 +15,25 @@ namespace MvcApplication2.Controllers
         private FabricsEntities db = new FabricsEntities();
 
         // GET: Products
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(db.Products.ToList());
+        //}
+
+        public ActionResult Index(int? Limit)
         {
-            return View(db.Products.ToList());
+            IEnumerable<Product> data = null;
+
+            if (Limit.HasValue)
+            {
+                data = db.Database.SqlQuery<Product>("SELECT TOP " + Limit + " * FROM dbo.Product").AsEnumerable();
+            }
+            else
+            {
+                data = db.Products.AsEnumerable();
+            }
+
+            return View(data);
         }
 
         // GET: Products/Details/5

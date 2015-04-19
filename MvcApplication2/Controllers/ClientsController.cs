@@ -139,5 +139,11 @@ namespace MvcApplication2.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Usp()
+        {
+            var result = db.usp_LookupClients().AsQueryable();
+            return View(result);
+        }
     }
 }
