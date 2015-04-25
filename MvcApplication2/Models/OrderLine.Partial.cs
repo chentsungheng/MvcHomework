@@ -14,6 +14,7 @@ namespace MvcApplication2.Models
         [Required]
         public int OrderId { get; set; }
         [Required]
+        [EvenInteger(ErrorMessage = "必需為偶數")]
         public int LineNumber { get; set; }
         [Required]
         public int ProductId { get; set; }

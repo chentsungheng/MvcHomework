@@ -5,8 +5,22 @@ namespace MvcApplication2.Models
     using System.ComponentModel.DataAnnotations;
     
     [MetadataType(typeof(ProductMetaData))]
-    public partial class Product
+    public partial class Product : IValidatableObject
     {
+        // 模型驗證, 在輸入驗證後執行
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Price < 10000)
+            {
+                yield return new ValidationResult("Price is too low", new string[] { "Price" });
+            }
+
+            if (ProductName.Length < 5)
+            {
+                yield return new ValidationResult("ProductName is too short", new string[] { "ProductName" });
+            }
+        }
     }
     
     public partial class ProductMetaData

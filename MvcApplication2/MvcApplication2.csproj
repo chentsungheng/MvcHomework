@@ -191,6 +191,7 @@
     <Compile Include="Controllers\CRUDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderLinesController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\EFUnitOfWork.cs">
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EvenIntegerAttribute.cs" />
     <Compile Include="Models\Fabrics.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,9 +401,15 @@
     <Content Include="Views\CRUD\Details.cshtml" />
     <Content Include="Views\CRUD\Create.cshtml" />
     <Content Include="Views\Clients\Usp.cshtml" />
+    <Content Include="Views\OrderLines\Create.cshtml" />
+    <Content Include="Views\OrderLines\Delete.cshtml" />
+    <Content Include="Views\OrderLines\Details.cshtml" />
+    <Content Include="Views\OrderLines\Edit.cshtml" />
+    <Content Include="Views\OrderLines\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\OrderLine\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
