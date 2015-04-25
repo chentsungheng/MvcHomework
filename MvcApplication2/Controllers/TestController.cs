@@ -13,5 +13,20 @@ namespace MvcApplication2.Controllers
         {
             return View();
         }
+
+        public ActionResult View2()
+        {
+            return View("View2");
+        }
+
+        public ActionResult Alter()
+        {
+            return PartialView("AltView");
+        }
+
+        public ContentResult Direct()
+        {
+            return Content("Test Content");
+        }
     }
 }
