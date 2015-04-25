@@ -36,6 +36,7 @@ namespace MvcApplication2.Models
         public Nullable<double> Longitude { get; set; }
         public Nullable<double> Latitude { get; set; }
         public string Notes { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Occupation Occupation { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

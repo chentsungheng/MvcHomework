@@ -12,6 +12,9 @@ namespace MvcApplication2.Controllers
 {
     public class ClientsController : Controller
     {
+        ClientRepository repClient = RepositoryHelper.GetClientRepository();
+        OccupationRepository repOccupation = RepositoryHelper.GetOccupationRepository();
+
         public ActionResult Login()
         {
             return View();
@@ -28,7 +31,9 @@ namespace MvcApplication2.Controllers
         // GET: Clients
         public ActionResult Index()
         {
-            var clients = db.Clients.Include(c => c.Occupation).Take(10);
+            //var clients = db.Clients.Include(c => c.Occupation).Take(10);
+            var clients = repClient.All().Take(10);
+
             return View(clients.ToList());
         }
 
@@ -39,7 +44,8 @@ namespace MvcApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
+            //Client client = db.Clients.Find(id);
+            Client client = repClient.Find(id.Value);
             if (client == null)
             {
                 return HttpNotFound();
@@ -63,12 +69,16 @@ namespace MvcApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Clients.Add(client);
-                db.SaveChanges();
+                //db.Clients.Add(client);
+                //db.SaveChanges();
+                repClient.Add(client);
+                repClient.UnitOfWork.Commit();
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            //ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            ViewBag.OccupationId = new SelectList(repOccupation.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
 
@@ -79,12 +89,14 @@ namespace MvcApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
+            //Client client = db.Clients.Find(id);
+            Client client = repClient.Find(id.Value);
             if (client == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            //ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            ViewBag.OccupationId = new SelectList(repOccupation.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
 
@@ -97,11 +109,14 @@ namespace MvcApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(client).State = EntityState.Modified;
+                //db.SaveChanges();
+                repClient.UnitOfWork.Context.Entry(client).State = EntityState.Modified;
+                repClient.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
-            ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            //ViewBag.OccupationId = new SelectList(db.Occupations, "OccupationId", "OccupationName", client.OccupationId);
+            ViewBag.OccupationId = new SelectList(repOccupation.All(), "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
 
@@ -112,7 +127,8 @@ namespace MvcApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
+            //Client client = db.Clients.Find(id);
+            Client client = repClient.Find(id.Value);
             if (client == null)
             {
                 return HttpNotFound();
@@ -125,9 +141,12 @@ namespace MvcApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
-            db.SaveChanges();
+            //Client client = db.Clients.Find(id);
+            //db.Clients.Remove(client);
+            //db.SaveChanges();
+            Client client = repClient.Find(id);
+            repClient.Delete(client);
+            repClient.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
 
