@@ -10,11 +10,8 @@ using MvcApplication2.Models;
 
 namespace MvcApplication2.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
-        ClientRepository repClient = RepositoryHelper.GetClientRepository();
-        OccupationRepository repOccupation = RepositoryHelper.GetOccupationRepository();
-
         public ActionResult Login()
         {
             return View();
@@ -164,5 +161,12 @@ namespace MvcApplication2.Controllers
             var result = db.usp_LookupClients().AsQueryable();
             return View(result);
         }
+
+#if DEBUG
+        public override JsonResult Debug()
+        {
+            return Json("This is DEBUG action", JsonRequestBehavior.AllowGet);
+        }
+#endif
     }
 }
