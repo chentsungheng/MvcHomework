@@ -424,6 +424,7 @@
     <Content Include="Views\Binding\Prefix.cshtml" />
     <Content Include="Views\Binding\Defer.cshtml" />
     <Content Include="Views\Products\PartialEdit.cshtml" />
+    <Content Include="Views\Shared\ErrorArgument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

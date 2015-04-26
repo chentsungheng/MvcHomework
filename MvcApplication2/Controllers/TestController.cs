@@ -97,5 +97,29 @@ namespace MvcApplication2.Controllers
         {
             return new HttpStatusCodeResult(HttpStatusCode.Created, "Created test");
         }
+
+        //[Authorize]
+        //[NonAction]
+        [OutputCache(Duration = 60)]
+        public ActionResult Filter()
+        {
+            return View("Index");
+        }
+
+        public ActionResult HandleError()
+        {
+            // In this TEST, not use DEBUG mode.
+            throw new Exception("This is handle error message");
+        }
+
+        [HandleError(ExceptionType = typeof(ArgumentException), View = "ErrorArgument")]
+        public ActionResult HandleError2(string Type = "")
+        {
+            // In this TEST, not use DEBUG mode.
+            if (Type == "A")
+                throw new ArgumentException("Argument");
+            else
+                throw new Exception("This is handle error message");
+        }
     }
 }
