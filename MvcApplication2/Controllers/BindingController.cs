@@ -78,5 +78,40 @@ namespace MvcApplication2.Controllers
         {
             return Content(string.Format("Double ---> Username1 is {0}, Password1 is {1}, Username2 is {2}, Password2 is {3}", Item1.UserName, Item1.Password, Item2.UserName, Item2.Password));
         }
+
+        public ActionResult ArrayBinding()
+        {
+            FabricsEntities db = new FabricsEntities();
+
+            var data = from client
+                       in db.Clients
+                       select new DemoViewModel()
+                       {
+                           UserName = client.FirstName,
+                           Password = client.LastName,
+                           Confirm = client.LastName,
+                           UserAge = 20
+                       };
+
+            return View(data.Take(5));
+        }
+
+        // 參數名稱要Match
+        [HttpPost]
+        public ActionResult ArrayBinding(IList<DemoViewModel> item)
+        {
+            return Content("");
+        }
+
+        public ActionResult Prefix()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Prefix([Bind(Prefix = "item1")]DemoViewModel item)
+        {
+            return Content("Prefix: " + item.UserName + ":" + item.Password);
+        }
     }
 }

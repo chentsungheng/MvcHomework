@@ -420,6 +420,8 @@
     <Content Include="Views\Binding\Model.cshtml" />
     <Content Include="Views\Binding\Base.cshtml" />
     <Content Include="Views\Binding\DoubleBinding.cshtml" />
+    <Content Include="Views\Binding\ArrayBinding.cshtml" />
+    <Content Include="Views\Binding\Prefix.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

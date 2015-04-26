@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcApplication2.Models.DemoViewModel>
+
+@{
+    ViewBag.Title = "ArrayBinding";
+}
+
+<h2>ArrayBinding</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@{Html.BeginForm();}
+@{
+    MvcApplication2.Models.DemoViewModel[] item = Model.ToArray();
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Confirm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAge)
+        </th>
+    </tr>
+
+    @*@foreach (var item in Model)*@
+    @for (int i = 0; i < item.Length; i++)
+    {
+        <tr>
+            <td>
+                @Html.EditorFor(modelItem => item[i].UserName)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item[i].Password)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item[i].Confirm)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item[i].UserAge)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+
+@{Html.EndForm();}
