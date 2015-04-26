@@ -422,6 +422,8 @@
     <Content Include="Views\Binding\DoubleBinding.cshtml" />
     <Content Include="Views\Binding\ArrayBinding.cshtml" />
     <Content Include="Views\Binding\Prefix.cshtml" />
+    <Content Include="Views\Binding\Defer.cshtml" />
+    <Content Include="Views\Products\PartialEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

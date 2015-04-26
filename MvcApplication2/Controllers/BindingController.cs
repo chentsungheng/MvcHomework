@@ -113,5 +113,24 @@ namespace MvcApplication2.Controllers
         {
             return Content("Prefix: " + item.UserName + ":" + item.Password);
         }
+
+        public ActionResult Defer()
+        {
+            return View();
+        }
+
+        // FormCollection會進到Action才會驗證
+        [HttpPost]
+        public ActionResult Defer(FormCollection Form)
+        {
+            DemoViewModel item = new DemoViewModel();
+
+            if (TryUpdateModel<DemoViewModel>(item))
+            {
+                return RedirectToAction("Defer");
+            }
+
+            return View(item);
+        }
     }
 }

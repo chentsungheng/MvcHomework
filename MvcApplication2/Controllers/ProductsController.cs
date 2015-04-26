@@ -105,6 +105,36 @@ namespace MvcApplication2.Controllers
             return View(product);
         }
 
+        public ActionResult PartialEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult PartialEdit(int id)
+        {
+            // Get newest Data
+            Product product = db.Products.Find(id);
+
+            // TryUpdateModel has UPDATE property as below "include properties", and doing valid
+            if (TryUpdateModel<Product>(product, new string[] { "ProductName", "Price", "Stock" }))
+            {
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
