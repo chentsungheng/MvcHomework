@@ -212,6 +212,7 @@
       <DependentUpon>IRepository.EF6.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomLoginViewModel.cs" />
+    <Compile Include="Models\DemoViewModel.cs" />
     <Compile Include="Models\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -417,6 +418,8 @@
     <Content Include="Views\Shared\View2.cshtml" />
     <Content Include="Views\Binding\Show.cshtml" />
     <Content Include="Views\Binding\Model.cshtml" />
+    <Content Include="Views\Binding\Base.cshtml" />
+    <Content Include="Views\Binding\DoubleBinding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
