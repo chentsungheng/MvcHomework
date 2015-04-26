@@ -5,3 +5,16 @@
 
 <h2>Test Index</h2>
 
+<input type="button" onclick="GetJsonData()" value="Get Json Test" />
+<textarea id="tarea"></textarea>
+<p id="area"></p>
+
+<script type="text/javascript">
+    function GetJsonData() {
+        $.getJSON("/Test/Json01", null, function (data) {
+            console.log(data);
+            //$('#tarea').val(data);
+        });
+    }
+</script>
+

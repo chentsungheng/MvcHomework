@@ -1,0 +1,12 @@
+﻿@model MvcApplication2.Models.Product
+@{
+    ViewBag.Title = "Model";
+}
+
+<h2>Model</h2>
+
+@{
+    var product = Model as MvcApplication2.Models.Product;
+}
+
+Price is @product.Price
